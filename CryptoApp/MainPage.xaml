@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CryptoApp.MainPage">
+
+    <Label Text="More...">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding TapCommand}" CommandParameter="https://learn.microsoft.com/dotnet/maui/" />
+        </Label.GestureRecognizers>
+    </Label>
+
+</ContentPage>

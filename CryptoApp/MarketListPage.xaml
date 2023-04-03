@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CryptoApp.MarketListPage"
+             xmlns:vm="clr-namespace:CryptoApp.ViewModels" 
+             xmlns:util="clr-namespace:CryptoApp.Resources.Utilities" 
+             Title="MarketListPage"
+             BackgroundColor="#1c1b1b">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <util:StringToColorConverter x:Key="ColorConverter" />
+            <util:PercentageStringConverter x:Key="PercentageTextConverter" />
+            <util:MarketCapStringConverter x:Key="MarketCapTextConverter" />
+            <util:PriceStringConverter x:Key="PriceTextConverter" />
+        </ResourceDictionary>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+        <Style x:Key="labelHeader"
+               TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+        <Style x:Key="labelHeaderSortable"
+               BasedOn="{StaticResource labelHeader}"
+               TargetType="Label">
+            <Setter Property="TextColor" Value="LightSkyBlue" />
+        </Style>
+        <Style x:Key="spanHeaderSortable"
+               BasedOn="{StaticResource spanHeader}"
+               TargetType="Span">
+            <Setter Property="TextColor" Value="LightSkyBlue" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+
+    </ContentPage.Resources>
+
+    <CollectionView ItemsSource="{Binding CryptoCurrencies}">
+        <CollectionView.Header>
+            <Grid ColumnDefinitions="*,*,*,*,*" Padding="0,0,2,0">
+                <Label Text="Rank" Style="{StaticResource labelHeader}" HorizontalOptions="Center" Grid.Column="0"/>
+                <Label Text="Coin" Style="{StaticResource labelHeader}" Grid.Column="1"/>
+                <Label Text="Price" Style="{StaticResource labelHeader}" Grid.Column="2"/>
+                <Label Text="24H" Style="{StaticResource labelHeaderSortable}" Grid.Column="3">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Sort24HCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <Label Text="Market Cap" Style="{StaticResource labelHeaderSortable}" Grid.Column="4">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SortMarketCapCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </CollectionView.Header>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate >
+                <Grid RowDefinitions="*,*" Margin="0,0,0,0">
+                    <VerticalStackLayout Grid.Row="0" Padding="15,3,15,0">
+                        <BoxView Color="white" HeightRequest="0.9" HorizontalOptions="Fill" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*,*,*,*" Grid.Row="1" VerticalOptions="Center" MaximumHeightRequest="50" MinimumHeightRequest="50">
+                        <Label Text="{Binding MarketCapRank}" Grid.Column="0" HorizontalTextAlignment="Center"/>
+                        <Grid Grid.Column="1">
+                            <Grid RowDefinitions="*,*" HorizontalOptions="Center" Margin="-40,0,0,0">
+                                <Image Source="{Binding Image}" Grid.Row="0" MaximumHeightRequest="25" MinimumHeightRequest="25"/>
+                                <Label Text="{Binding Symbol}" Grid.Row="1" />
+                            </Grid>
+                        </Grid>
+                        <Label Text="{Binding CurrentPrice,
+                                  Converter={StaticResource PriceTextConverter},
+                                  StringFormat='{0:X2}'}" Grid.Column="2"/>
+                        <Label Text="{Binding Pricechange24hPercentage,
+                                  Converter={StaticResource PercentageTextConverter},
+                                  StringFormat='{0:X2}'}"
+                               TextColor="{Binding Pricechange24hPercentage,
+                                  Converter={StaticResource ColorConverter}}" Grid.Column="3"/>
+                        <Label Text="{Binding MarketCap,
+                                  Converter={StaticResource MarketCapTextConverter},
+                                  StringFormat='{0:X2}'}" Grid.Column="4"/>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
