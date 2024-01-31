@@ -13,14 +13,20 @@
             <DataTemplate x:Key="CryptoSearchTemplate">
                 <Grid Padding="10"
                       ColumnDefinitions="0.15*,0.85*">
-                    <Image Source="{Binding ImageUrl}"
-                           HeightRequest="40"
-                           WidthRequest="40" />
+                    <Image Source="{Binding Image}"
+                           HeightRequest="20"
+                           WidthRequest="20" />
                     <Label Grid.Column="1"
                            Text="{Binding Name}"
                            FontAttributes="Bold"
                            VerticalOptions="Center" />
                 </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="whiteLine">
+                <VerticalStackLayout Grid.Row="0" Padding="15,3,15,0">
+                    <BoxView Color="white" HeightRequest="0.9" HorizontalOptions="Fill" />
+                </VerticalStackLayout>
             </DataTemplate>
 
         </ResourceDictionary>

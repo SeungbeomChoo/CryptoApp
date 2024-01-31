@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:CryptoApp.ViewModels" 
-             xmlns:views="clr-namespace:CryptoApp" 
              xmlns:handlers="clr-namespace:CryptoApp.Handlers"
+             xmlns:vm="clr-namespace:CryptoApp.ViewModels"  
+             xmlns:views="clr-namespace:CryptoApp"
              x:Class="CryptoApp.SearchPage"
              Title="SearchPage">
     <Shell.SearchHandler>
-        <handlers:CryptoSearchHandler Placeholder="Enter search term"
+        <handlers:CryptoSearchHandler
+                                        Placeholder="Enter search term"
                                       ShowsResults="true"
                                       ItemTemplate="{StaticResource CryptoSearchTemplate}"
-                                      AllCryptoCurrencies="{Binding AllCryptoList}"
+                                      AllCryptoCurrencies="{x:Static vm:SearchViewModel.AllCryptoList}"
                                       SelectedItemNavigationTarget="{x:Type views:CryptoDetailPage}" />
     </Shell.SearchHandler>
 </ContentPage>

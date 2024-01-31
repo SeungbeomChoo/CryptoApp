@@ -12,7 +12,7 @@ namespace CryptoApp.ViewModels
 
         private ICoinGeckoService _coinGeckoService;
 
-        private IList<CryptoCurrency> _allCryptoCurrencyList;
+        public static List<CryptoCurrency> AllCryptoList { get; set; } = new List<CryptoCurrency>();
 
         public SearchViewModel(ICoinGeckoService coinGeckoService)
         {
@@ -23,20 +23,7 @@ namespace CryptoApp.ViewModels
 
         public async Task Initialize()
         {
-            _allCryptoCurrencyList = await _coinGeckoService.GetAllCryptoCurrencies();
-            AllCryptoList = _allCryptoCurrencyList;
-        }
-
-        public IList<CryptoCurrency> AllCryptoList
-        {
-            get => _allCryptoCurrencyList;
-            set
-            {
-                if (_allCryptoCurrencyList != value)
-                    _allCryptoCurrencyList = value;
-
-                OnPropertyChanged("AllCryptoList");
-            }
+            AllCryptoList = await _coinGeckoService.GetAllCryptoCurrencies();
         }
 
         public void OnPropertyChanged([CallerMemberName] string name = "") =>

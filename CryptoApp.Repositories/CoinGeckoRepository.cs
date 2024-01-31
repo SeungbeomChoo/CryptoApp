@@ -1,6 +1,8 @@
 ﻿using CryptoApp.Models;
 using CryptoApp.Repositories.Interfaces;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace CryptoApp.Repositories
 {
@@ -48,6 +51,40 @@ namespace CryptoApp.Repositories
             }
 
             return list;
+        }
+
+        public async Task<Dictionary<string, double>> GetCurrentPrices(List<string> cryptoIds, string currency = "usd")
+        {
+            var result = new Dictionary<string, double>();
+            var URL = $"https://api.coingecko.com/api/v3/simple/price?ids={string.Join(",", cryptoIds)}&vs_currencies={currency}";
+
+            try
+            {
+                var response = await _client.GetStringAsync(URL);
+                result = GetCurrentPricesForCryptoCurrency(response, cryptoIds, currency);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return result;
+        }
+
+        private Dictionary<string, double> GetCurrentPricesForCryptoCurrency(string unserializedResult, List<string> cryptoIds, string currency)
+        {
+            var result = new Dictionary<string, double>();
+            var jsonObject = JObject.Parse(unserializedResult);
+
+            cryptoIds.ForEach(x =>
+            {
+                var usdPrice = (JObject)jsonObject[x];
+                var currentPrice = (double)usdPrice[currency];
+
+                result.Add(x, currentPrice);
+            });
+
+            return result;
         }
     }
 }

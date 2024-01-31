@@ -2,11 +2,118 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CryptoApp.CryptoDetailPage"
-             Title="CryptoDetailPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             xmlns:util="clr-namespace:CryptoApp.Resources.Utilities" 
+             Title="{Binding CryptoCurrency.Name}"
+             BackgroundColor="#1c1b1b">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <util:PercentageStringConverter x:Key="PercentageTextConverter" />
+            <util:MarketCapStringConverter x:Key="MarketCapTextConverter" />
+            <util:PriceStringConverter x:Key="PriceTextConverter" />
+            <util:RankStringConverter x:Key="RankStringConverter" />
+            <util:DateConverter x:Key="DateConverter" />
+        </ResourceDictionary>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="Padding" Value="10,0,10,0" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="LineStack" TargetType="VerticalStackLayout">
+            <Setter Property="Padding" Value="10,0,10,0" />
+        </Style>
+        <Style x:Key="WhiteLine" TargetType="BoxView">
+            <Setter Property="Color" Value="White" />
+            <Setter Property="HeightRequest" Value="0.9" />
+            <Setter Property="HorizontalOptions" Value="Fill" />
+        </Style>
+        <Style x:Key="TextGrid" TargetType="Grid">
+            <Setter Property="Margin" Value="0,0,0,0" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid Padding="10">
+        <BoxView Color="Black"
+             CornerRadius="10"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="0.9" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="0.9" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="0.9" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="0.9" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="0.9" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="0.9" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Grid ColumnDefinitions="*,*" Grid.Row="0" Style="{StaticResource TextGrid}">
+                <Label Text="Market Cap Rank" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding CryptoCurrency.MarketCapRank,
+                                  Converter={StaticResource RankStringConverter},
+                                  StringFormat='{0:X2}'}" Grid.Column="1" HorizontalTextAlignment="End"/>
+            </Grid>
+            <VerticalStackLayout Grid.Row="1" Style="{StaticResource LineStack}">
+                <BoxView Style="{StaticResource WhiteLine}" />
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" Grid.Row="2" Style="{StaticResource TextGrid}">
+                <Label Text="Market Cap" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding CryptoCurrency.MarketCap,
+                                  Converter={StaticResource MarketCapTextConverter},
+                                  StringFormat='{0:X2}'}" Grid.Column="1" HorizontalTextAlignment="End"/>
+            </Grid>
+            <VerticalStackLayout Grid.Row="3" Style="{StaticResource LineStack}">
+                <BoxView Style="{StaticResource WhiteLine}" />
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" Grid.Row="4" Style="{StaticResource TextGrid}">
+                <Label Text="24H High" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding CryptoCurrency.DayHourHigh,
+                                  Converter={StaticResource PriceTextConverter},
+                                  StringFormat='{0:X2}'}" Grid.Column="1" HorizontalTextAlignment="End"/>
+            </Grid>
+            <VerticalStackLayout Grid.Row="5" Style="{StaticResource LineStack}">
+                <BoxView Style="{StaticResource WhiteLine}" />
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" Grid.Row="6" Style="{StaticResource TextGrid}">
+                <Label Text="24H Low" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding CryptoCurrency.DayHourLow,
+                                  Converter={StaticResource PriceTextConverter},
+                                  StringFormat='{0:X2}'}" Grid.Column="1" HorizontalTextAlignment="End"/>
+            </Grid>
+            <VerticalStackLayout Grid.Row="7" Style="{StaticResource LineStack}">
+                <BoxView Style="{StaticResource WhiteLine}" />
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" Grid.Row="8" Style="{StaticResource TextGrid}">
+                <Label Text="All Time High" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Grid RowDefinitions="*,*" Grid.Column="1">
+                    <Label Text="{Binding AllTimeHigh}" Grid.Row="0" HorizontalTextAlignment="End"/>
+                    <Label Text="{Binding CryptoCurrency.AllTimeHighPercentageDate,
+                                  Converter={StaticResource DateConverter},
+                                  StringFormat='{0:X2}'}" Grid.Row="1" HorizontalTextAlignment="End"/>
+                </Grid>
+            </Grid>
+            <VerticalStackLayout Grid.Row="9" Style="{StaticResource LineStack}">
+                <BoxView Style="{StaticResource WhiteLine}" />
+            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*" Grid.Row="10" Style="{StaticResource TextGrid}">
+                <Label Text="All Time Low" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Grid RowDefinitions="*,*" Grid.Column="1">
+                    <Label Text="{Binding AllTimeLow}" Grid.Row="0" HorizontalTextAlignment="End"/>
+                    <Label Text="{Binding CryptoCurrency.AllTimeLowPercentageDate,
+                                  Converter={StaticResource DateConverter},
+                                  StringFormat='{0:X2}'}" Grid.Row="1" HorizontalTextAlignment="End"/>
+                </Grid>
+            </Grid>
+            <VerticalStackLayout Grid.Row="11" Style="{StaticResource LineStack}">
+                <BoxView Style="{StaticResource WhiteLine}" />
+            </VerticalStackLayout>
+            <Grid RowDefinitions="*" Grid.Row="12">
+                <Label Text="14 Day history" Grid.Row="0" HorizontalTextAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </Grid>
 </ContentPage>

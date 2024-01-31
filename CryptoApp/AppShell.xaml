@@ -5,25 +5,42 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CryptoApp">
 
+    <Shell.Resources>
+        <Style x:Key="ShellColor"
+               TargetType="Element">
+            <Setter Property="Shell.BackgroundColor"
+                    Value="Beige" />
+        </Style>
+    </Shell.Resources>
+
     <Shell.FlyoutHeader>
-        <Grid HeightRequest="100" BackgroundColor="DarkSlateBlue">
+        <Grid HeightRequest="50" BackgroundColor="DarkGrey">
         </Grid>
     </Shell.FlyoutHeader>
 
     <FlyoutItem Title="MainPage">
         <ShellContent
         Title="Home"
+            Style="{StaticResource ShellColor}"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
     </FlyoutItem>
     
-    <FlyoutItem Title="MarketList" Icon="market.png">
+    <FlyoutItem Title="Market List" Icon="market.png">
         <ShellContent
+            Style="{StaticResource ShellColor}"
             ContentTemplate="{DataTemplate local:MarketListPage}"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="MarketList" Icon="search.png">
+    <FlyoutItem Title="Portfolio" Icon="portfolio.jpg">
         <ShellContent
+            Style="{StaticResource ShellColor}"
+            ContentTemplate="{DataTemplate local:PortfolioPage}"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Search" Icon="search.png">
+        <ShellContent
+            Style="{StaticResource ShellColor}"
             ContentTemplate="{DataTemplate local:SearchPage}"/>
     </FlyoutItem>
 

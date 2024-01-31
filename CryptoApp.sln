@@ -5,17 +5,15 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoApp", "CryptoApp\CryptoApp.csproj", "{A8FA7943-684C-4530-8456-0F210E4F2675}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoApp.Tests", "CryptoApp.Tests\CryptoApp.Tests.csproj", "{74DE3323-0D3B-4BD6-A8F1-D7639A2D9646}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoApp.Services", "CryptoApp.Services\CryptoApp.Services.csproj", "{10D772DD-0C38-4C7B-95A5-E8772E424168}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoApp.Services", "CryptoApp.Services\CryptoApp.Services.csproj", "{10D772DD-0C38-4C7B-95A5-E8772E424168}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoApp.Repositories", "CryptoApp.Repositories\CryptoApp.Repositories.csproj", "{F8ED95D4-7265-4042-BF97-2C0E771E60BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoApp.Repositories", "CryptoApp.Repositories\CryptoApp.Repositories.csproj", "{F8ED95D4-7265-4042-BF97-2C0E771E60BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoApp.Models", "CryptoApp.Models\CryptoApp.Models.csproj", "{A91AE409-E12E-4E3D-BD16-ABCEE80D519F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoApp.Models", "CryptoApp.Models\CryptoApp.Models.csproj", "{A91AE409-E12E-4E3D-BD16-ABCEE80D519F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoApp.Repositories.Tests", "CryptoApp.Repositories.Tests\CryptoApp.Repositories.Tests.csproj", "{F8A6129A-E5BF-4A61-8667-FB7C30C4F0B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoApp.Repositories.Tests", "CryptoApp.Repositories.Tests\CryptoApp.Repositories.Tests.csproj", "{F8A6129A-E5BF-4A61-8667-FB7C30C4F0B7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CryptoApp.Services.Tests", "CryptoApp.Services.Tests\CryptoApp.Services.Tests.csproj", "{27396D70-5994-4A56-94A8-60031CDCE8DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CryptoApp.Services.Tests", "CryptoApp.Services.Tests\CryptoApp.Services.Tests.csproj", "{27396D70-5994-4A56-94A8-60031CDCE8DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +27,6 @@ Global
 		{A8FA7943-684C-4530-8456-0F210E4F2675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8FA7943-684C-4530-8456-0F210E4F2675}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8FA7943-684C-4530-8456-0F210E4F2675}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{74DE3323-0D3B-4BD6-A8F1-D7639A2D9646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74DE3323-0D3B-4BD6-A8F1-D7639A2D9646}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74DE3323-0D3B-4BD6-A8F1-D7639A2D9646}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74DE3323-0D3B-4BD6-A8F1-D7639A2D9646}.Release|Any CPU.Build.0 = Release|Any CPU
 		{10D772DD-0C38-4C7B-95A5-E8772E424168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{10D772DD-0C38-4C7B-95A5-E8772E424168}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10D772DD-0C38-4C7B-95A5-E8772E424168}.Release|Any CPU.ActiveCfg = Release|Any CPU

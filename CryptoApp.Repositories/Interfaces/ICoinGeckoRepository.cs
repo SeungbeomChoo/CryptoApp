@@ -11,5 +11,6 @@ namespace CryptoApp.Repositories.Interfaces
     {
         Task<List<CryptoCurrency>> GetTopCryptoCurrencies();
         Task<List<CryptoCurrency>> GetAllCryptoCurrencies();
+        Task<Dictionary<string, double>> GetCurrentPrices(List<string> cryptoIds, string currency);
     }
 }

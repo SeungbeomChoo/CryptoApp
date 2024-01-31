@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CryptoApp.PortfolioPage"
+             xmlns:vm="clr-namespace:CryptoApp.ViewModels" 
+             xmlns:util="clr-namespace:CryptoApp.Resources.Utilities" 
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             Title="Portfolio"
+             BackgroundColor="#1c1b1b">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <util:StringToColorConverter x:Key="ColorConverter" />
+            <util:PercentageStringConverter x:Key="PercentageTextConverter" />
+            <util:MarketCapStringConverter x:Key="MarketCapTextConverter" />
+            <util:PriceStringConverter x:Key="PriceTextConverter" />
+        </ResourceDictionary>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+        <Style x:Key="labelHeader"
+               TargetType="Label">
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontAttributes" Value="Bold" />
+        </Style>
+    </ContentPage.Resources>
+    
+    <Grid Padding="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition />
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <BoxView Color="Grey"
+             CornerRadius="10"/>
+        <Grid RowDefinitions="*,*,*" Grid.Row="0">
+            <BoxView Color="Grey"
+             CornerRadius="10"/>
+            <Label Text="My Portfolio" Style="{StaticResource labelHeader}" Grid.Row="0"/>
+            <Grid ColumnDefinitions="*,*" Grid.Row="1">
+                <Label Text="Value:" Style="{StaticResource labelHeader}" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding TotalBoughtPrice}" Style="{StaticResource labelHeader}" Grid.Column="1" HorizontalTextAlignment="End"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,*" Grid.Row="2">
+                <Label Text="Total P/L:" Style="{StaticResource labelHeader}" Grid.Column="0" HorizontalTextAlignment="Start"/>
+                <Label Text="{Binding TotalCurrentPrice}" Style="{StaticResource labelHeader}" Grid.Column="1" HorizontalTextAlignment="End"/>
+            </Grid>
+        </Grid>
+        <Grid RowDefinitions="40,*" Grid.Row="1">
+            <Label Text="Coins" Style="{StaticResource labelHeader}" Grid.Row="0" HorizontalTextAlignment="Center" FontSize="25"/>
+            <CollectionView ItemsSource="{Binding Exchanges}" Grid.Row="1">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="*,*,*,*" Padding="0,0,2,0">
+                        <Label Text="Name" Style="{StaticResource labelHeader}" HorizontalOptions="Center" Grid.Column="0"/>
+                        <Label Text="Quantity" Style="{StaticResource labelHeader}" Grid.Column="1"/>
+                        <Label Text="Avg Price" Style="{StaticResource labelHeader}" Grid.Column="2"/>
+                        <Label Text="Current Price" Style="{StaticResource labelHeader}" Grid.Column="3"/>
+                    </Grid>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate >
+                        <Grid RowDefinitions="*" Margin="0,0,0,0" Padding="5">
+                            <BoxView Color="Grey" CornerRadius="10"/>
+                            <Grid ColumnDefinitions="*,*,*,*" Grid.Row="1" VerticalOptions="Center" MaximumHeightRequest="50" MinimumHeightRequest="30">
+                                <Label Text="{Binding CoinId}" Grid.Column="0" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Amount}" Grid.Column="1" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Average}" Grid.Column="2"/>
+                                <Label Text="{Binding CurrentPrice}" Grid.Column="3" HorizontalTextAlignment="Center"/>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+        <Grid Grid.Row="2">
+            <ImageButton Source="plus.png"
+                    Clicked="OnAddButtonClicked"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" WidthRequest="30" HeightRequest="30"/>
+        </Grid>
+    </Grid>
+</ContentPage>

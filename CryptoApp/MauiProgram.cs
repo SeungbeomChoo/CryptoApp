@@ -1,4 +1,5 @@
-﻿using CryptoApp.Repositories;
+﻿using CommunityToolkit.Maui;
+using CryptoApp.Repositories;
 using CryptoApp.Repositories.Interfaces;
 using CryptoApp.Services;
 using CryptoApp.Services.Interfaces;
@@ -17,6 +18,7 @@ public static class MauiProgram
             .RegisterViewModels()
             .RegisterRepositories()
             .RegisterServices()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -34,6 +36,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddTransient<MarketListPage>();
         mauiAppBuilder.Services.AddTransient<SearchPage>();
+        mauiAppBuilder.Services.AddTransient<PortfolioPage>();
 
         return mauiAppBuilder;
     }
@@ -42,6 +45,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<ViewModels.MarketListViewModel>();
         mauiAppBuilder.Services.AddSingleton<ViewModels.SearchViewModel>();
+        mauiAppBuilder.Services.AddSingleton<ViewModels.PortfolioViewModel>();
 
         return mauiAppBuilder;
     }
@@ -49,6 +53,7 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<ICoinGeckoService, CoinGeckoService>();
+        mauiAppBuilder.Services.AddSingleton<ICryptoAppPortfolioService, CryptoAppPortfolioService>();
 
         return mauiAppBuilder;
     }
@@ -56,6 +61,8 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterRepositories(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<ICoinGeckoRepository, CoinGeckoRepository>();
+        mauiAppBuilder.Services.AddSingleton<ICryptoAppDbRepository, CyptoAppDbRepository>();
+        mauiAppBuilder.Services.AddSingleton<ICryptoAppSqliteRepository, CryptoAppSqliteRepository>();
 
         return mauiAppBuilder;
     }

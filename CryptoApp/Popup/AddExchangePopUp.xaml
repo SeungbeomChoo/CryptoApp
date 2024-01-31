@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:toolkit="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="CryptoApp.Popup.AddExchangePopUp"
+           CanBeDismissedByTappingOutsideOfPopup="False"
+           Size="300, 400">
+    <Grid RowDefinitions="*,*,*,*,*,*" BackgroundColor="#524F4F">
+        <Label Text="Add a New Coin" Style="{StaticResource labelHeader}" Grid.Row="0" HorizontalTextAlignment="Center"/>
+        <Entry x:Name="coinname" Placeholder="Coin Name" TextChanged="CoinNameChanged" Grid.Row="1"/>
+        <Entry x:Name="symbol" Placeholder="Symbol" TextChanged="SymbolChanged" Grid.Row="2" />
+        <Entry x:Name="quantity" Keyboard="Numeric" Placeholder="Quantity" TextChanged="QuantityChanged" Grid.Row="3" />
+        <Entry x:Name="purchasedprice" Keyboard="Numeric" Placeholder="Price Purchased At" TextChanged="PricePurchasedChanged" Grid.Row="4" />
+        <Grid ColumnDefinitions="*,*" Grid.Row="5">
+            <Button Text="Add" HeightRequest="30" WidthRequest="100" Clicked="OnSaveButtonClicked" Grid.Column="0" HorizontalOptions="Start"/>
+            <Button Text="Cancel" HeightRequest="30" WidthRequest="100" Clicked="OnCancelButtonClicked" Grid.Column="1" HorizontalOptions="End"/>
+        </Grid>
+    </Grid>
+</toolkit:Popup>

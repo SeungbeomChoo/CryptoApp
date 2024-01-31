@@ -20,7 +20,7 @@ namespace CryptoApp.ViewModels
         private ICoinGeckoService _coinGeckoService;
 
         public ICommand Sort24HCommand => new Command(() => SortBy24HPercentage());
-        public ICommand SortMarketCapCommand => new Command(() => SortByMarketCap());
+        public Command SortMarketCapCommand => new Command(() => SortByMarketCap());
 
         public MarketListViewModel(ICoinGeckoService coinGeckoService)
         {

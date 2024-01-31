@@ -7,5 +7,17 @@ public partial class AppShell : Shell
     public AppShell()
 	{
 		InitializeComponent();
-	}
+        RegisterRoutes();
+        BindingContext = this;
+    }
+
+    void RegisterRoutes()
+    {
+        Routes.Add("cryptoDetail", typeof(CryptoDetailPage));
+
+        foreach (var item in Routes)
+        {
+            Routing.RegisterRoute(item.Key, item.Value);
+        }
+    }
 }
